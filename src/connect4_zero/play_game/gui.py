@@ -16,7 +16,7 @@ def start(config: Config):
     while True:
         env = Connect4Env().reset()
         human_is_black = random() < 0.5
-        connect4_model.start_game(human_is_black)
+        connect4_model.start_game(human_is_black)  # create an connect4_model.ai in PlayWithHuman
 
         while not env.done:
             if env.player_turn() == Player.black:

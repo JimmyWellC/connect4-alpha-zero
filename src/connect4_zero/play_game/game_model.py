@@ -9,6 +9,10 @@ logger = getLogger(__name__)
 
 
 class PlayWithHuman:
+    """
+    The class of actions which apply on Connect4Env() : env
+    """
+
     def __init__(self, config: Config):
         self.config = config
         self.human_color = None
@@ -42,6 +46,11 @@ class PlayWithHuman:
         return action
 
     def move_by_human(self, env):
+        """
+        The action for human player to apply on the board.
+        :param env: the Connect4Env() board to play with.
+        :return: the move human player input.
+        """
         while True:
             try:
                 movement = input('\nEnter your movement (1, 2, 3, 4, 5, 6, 7): ')

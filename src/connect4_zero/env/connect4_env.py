@@ -13,14 +13,21 @@ Player = enum.Enum("Player", "black white")
 
 
 class Connect4Env:
+    """
+    The Game Board of Connect4. Every action is applied on this board env = Connect4Env().reset()
+    """
     def __init__(self):
         self.board = None
         self.turn = 0
-        self.done = False
+        self.done = False  # if game is over
         self.winner = None  # type: Winner
         self.resigned = False
 
     def reset(self):
+        """
+        Reset the board.
+        :return: self
+        """
         self.board = []
         for i in range(6):
             self.board.append([])
@@ -50,12 +57,21 @@ class Connect4Env:
         return turn
 
     def player_turn(self):
+        """
+        Divide self.turn by 2 to determine enum.Enum Player
+        :return: Player.white or Player.black
+        """
         if self.turn % 2 == 0:
             return Player.white
         else:
             return Player.black
 
     def step(self, action):
+        """
+        Action function.
+        :param action: the input by ai or human player.
+        :return: self.board, {}
+        """
         if action is None:
             self._resigned()
             return self.board, {}
@@ -67,6 +83,7 @@ class Connect4Env:
 
         self.turn += 1
 
+        # check if four-in-a-row
         self.check_for_fours()
 
         if self.turn >= 42:
@@ -87,6 +104,10 @@ class Connect4Env:
         return legal
 
     def check_for_fours(self):
+        """
+        Check if four-in-a-row.
+        :return: self.done = True
+        """
         for i in range(6):
             for j in range(7):
                 if self.board[i][j] != ' ':
@@ -191,6 +212,10 @@ class Connect4Env:
         return four_in_a_row
 
     def _resigned(self):
+        """
+        Resign function
+        :return:
+        """
         if self.player_turn() == Player.white:
             self.winner = Winner.white
         else:
