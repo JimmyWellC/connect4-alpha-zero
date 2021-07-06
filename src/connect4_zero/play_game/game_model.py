@@ -12,7 +12,6 @@ class PlayWithHuman:
     """
     The class of actions which apply on Connect4Env() : env
     """
-
     def __init__(self, config: Config):
         self.config = config
         self.human_color = None
