@@ -12,24 +12,35 @@ router = APIRouter(
 )
 
 
-class Env(object):
+class EnvLock(object):
     _instance_lock = threading.Lock()
 
     def __new__(cls, *args, **kwargs):
-        if not hasattr(Env, "_instance"):
-            with Env._instance_lock:
-                if not hasattr(Env, "_instance"):
-                    Env._instance = object.__new__(cls)
+        if not hasattr(EnvLock, "_instance"):
+            with EnvLock._instance_lock:
+                if not hasattr(EnvLock, "_instance"):
+                    EnvLock._instance = object.__new__(cls)
 
-                    Env.env = Connect4Env().reset()
+                    EnvLock.env = Connect4Env().reset()
 
-        return Env._instance
+        return EnvLock._instance
 
     def __init__(self):
         self.env = self.env
 
-board = Env
+
+Env = EnvLock()
 
 
-# @router.post("/reset")
-# async def reset():
+@router.put("/reset")
+async def reset():
+    Env.env.reset()
+    return
+
+
+@router.post("/move")
+async def move(movement: int):
+    legal_moves = Env.env.legal_moves()
+    if legal_moves[movement] == 1:
+        action = movement
+        Env.env.step(action)

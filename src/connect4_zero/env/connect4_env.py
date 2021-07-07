@@ -1,7 +1,7 @@
 import enum
-import numpy as np
-
 from logging import getLogger
+
+import numpy as np
 
 logger = getLogger(__name__)
 
@@ -16,6 +16,7 @@ class Connect4Env:
     """
     The Game Board of Connect4. Every action is applied on this board env = Connect4Env().reset()
     """
+
     def __init__(self):
         self.board = None
         self.turn = 0
@@ -263,3 +264,20 @@ class Connect4Env:
     @property
     def observation(self):
         return ''.join(''.join(x for x in y) for y in self.board)
+
+    def api_output(self):
+        if self.done:
+            if self.winner == Winner.white:
+                status = "X"
+            elif self.winner == Winner.black:
+                status = "O"
+            else:
+                status = "draw"
+        else:
+            status = "ongoing"
+
+        result = {"status": status,
+                  "board": self.board,
+                  "turn": self.turn}
+
+        return result
