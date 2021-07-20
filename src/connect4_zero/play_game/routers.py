@@ -32,10 +32,15 @@ class EnvLock(object):
 Env = EnvLock()
 
 
+@router.get("/get_board")
+async def get_board():
+    return Env.env.api_output()
+
+
 @router.put("/reset")
 async def reset():
     Env.env.reset()
-    return
+    return Env.env.api_output()
 
 
 @router.post("/move")
@@ -44,3 +49,4 @@ async def move(movement: int):
     if legal_moves[movement] == 1:
         action = movement
         Env.env.step(action)
+    return Env.env.api_output()

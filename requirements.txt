@@ -1,6 +1,6 @@
 appnope==0.1.0
 bleach==1.5.0
-click==6.7
+click
 cycler==0.10.0
 decorator==4.1.2
 entrypoints==0.2.3
@@ -52,6 +52,7 @@ terminado==0.6
 testpath==0.3.1
 tornado==4.5.2
 traitlets==4.3.2
+uvicorn
 wcwidth==0.1.7
 Werkzeug==0.12.2
 widgetsnbextension==3.0.6
