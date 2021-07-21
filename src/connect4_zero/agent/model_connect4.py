@@ -20,6 +20,9 @@ logger = getLogger(__name__)
 
 
 class Connect4Model:
+    """
+    Pure Algorithm model wrapping Keras model.
+    """
     def __init__(self, config: Config):
         self.config = config
         self.model = None  # type: Model

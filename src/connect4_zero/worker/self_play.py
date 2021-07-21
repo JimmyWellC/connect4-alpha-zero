@@ -52,6 +52,11 @@ class SelfPlayWorker:
             idx += 1
 
     def start_game(self, idx):
+        """
+        Two Connect4Players play with each other.
+        :param idx:
+        :return:
+        """
         self.env.reset()
         self.black = Connect4Player(self.config, self.model)
         self.white = Connect4Player(self.config, self.model)

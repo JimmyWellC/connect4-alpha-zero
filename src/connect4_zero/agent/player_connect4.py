@@ -19,7 +19,7 @@ logger = getLogger(__name__)
 
 class Connect4Player:
     """
-    The AI used by human vs ai. self.ai = Connect4Player(self.config, self.model)
+    The AI player used in the Game. Combine the Connect4Model with the Game.
     """
     def __init__(self, config: Config, model, play_config=None):
 
