@@ -263,6 +263,10 @@ class Connect4Env:
 
     @property
     def observation(self):
+        """
+        Observation
+        :return:
+        """
         return ''.join(''.join(x for x in y) for y in self.board)
 
     def api_output(self):

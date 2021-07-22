@@ -22,6 +22,7 @@ logger = getLogger(__name__)
 class Connect4Model:
     """
     Pure Algorithm model wrapping Keras model.
+    Deep Learning Shit.
     """
     def __init__(self, config: Config):
         self.config = config

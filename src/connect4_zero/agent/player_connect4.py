@@ -20,6 +20,7 @@ logger = getLogger(__name__)
 class Connect4Player:
     """
     The AI player used in the Game. Combine the Connect4Model with the Game.
+    Real Reinforcement Learning Shit!
     """
     def __init__(self, config: Config, model, play_config=None):
 
@@ -210,6 +211,11 @@ class Connect4Player:
 
     @staticmethod
     def counter_key(env: Connect4Env):
+        """
+        Counter key
+        :param env: Connect4Env
+        :return: observation and turn
+        """
         return CounterKey(env.observation, env.turn)
 
     def select_action_q_and_u(self, env, is_root_node):
